@@ -1,12 +1,12 @@
 package streams;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class DataProcessor {
 
+public class DataProcessor {
+    //TODO
     public static boolean atLeastOneGradeA(Student student) {
 
         for (Grade grade : student.getGrades()) {
@@ -19,16 +19,10 @@ public class DataProcessor {
 
 
     public static List<Integer> getStudentAges(List<Student> students) {
-        final List<Integer> ages = new ArrayList<>();
 
-        for (Student student : students) {
-
-            ages.add(student.getAge());
-        }
-
-        return ages;
+        return students.stream().mapToInt(Student::getAge).boxed().toList();
     }
-
+    //TODO
     public static List<Student> getStudentsWithMinimumAge(List<Student> students, int minAge) {
         final List<Student> minAgeStudents = new ArrayList<>();
 
@@ -44,6 +38,7 @@ public class DataProcessor {
 
     // getGender() == Gender.MALE
     // or getGender().name().equals("MALE")
+    //TODO
     public static long countMaleStudents(List<Student> students) {
         long maleStudents = 0;
 
@@ -56,7 +51,7 @@ public class DataProcessor {
         return maleStudents;
     }
 
-
+    //TODO
     public static double avgAgeOfFemaleStudent(List<Student> students) {
         int femaleAgesTotal = 0;
         int numOfFemaleStudents = 0;
@@ -76,16 +71,12 @@ public class DataProcessor {
     }
 
     public static Integer getProductOfStudentAges(List<Student> students) {
-        int productOfStudentAges = 1;
-
-        for (Student student : students) {
-            productOfStudentAges *= student.getAge();
-        }
-
-        return productOfStudentAges;
+        
+        return students.stream().mapToInt(Student::getAge).reduce(1, (a,b) -> a* b);
     }
 
     // ignore F Grades
+    //TODO
     public static double productOfStudentGrades(Student student) {
         double productOfStudentGrades = 1.0;
 
@@ -99,7 +90,7 @@ public class DataProcessor {
     }
 
     // region BONUS
-
+    //TODO
     public static Optional<Grade> getBestMathGradeFromStudent(Student student) {
         Grade bestMathGrade = null;
 
@@ -116,15 +107,9 @@ public class DataProcessor {
     }
 
     public static List<Integer> getSortedAges(List<Student> students) {
-        final List<Integer> ages = new ArrayList<>();
 
-        for (Student student : students) {
-            ages.add(student.getAge());
-        }
 
-        ages.sort(Comparator.naturalOrder());
-
-        return ages;
+        return students.stream().mapToInt(Student::getAge).sorted().boxed().toList();
     }
 
     // endregion
