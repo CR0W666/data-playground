@@ -4,14 +4,14 @@ import streams.School
 import streams.Student
 
 fun sumOfAgesOfAllStudents(school: School): Int {
-    TODO()
+    return school.classes.flatMap { it.students }.sumOf { it.age }
 }
 
 fun allStudentsWithAgeGreaterThan(school: School, minAge: Int): List<Student> {
-    TODO()
+    return school.classes.flatMap {it.students }.filter { it.age > minAge }
 }
 
 fun avgMathGradeForAllFemaleStudents(school: School): Double {
-    TODO()
+    return school.classes.flatMap { it.students }.filter { it.gender == Gender.FEMALE }.flatMap { it.grades }.filter { it.subject == Subject.MATH }.map { it.type.value }.average()
 }
 
