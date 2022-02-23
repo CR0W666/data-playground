@@ -1,7 +1,9 @@
 package processing
 
+import streams.Gender
 import streams.School
 import streams.Student
+import streams.Subject
 
 fun sumOfAgesOfAllStudents(school: School): Int {
     return school.classes.flatMap { it.students }.sumOf { it.age }
